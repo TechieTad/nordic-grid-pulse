@@ -1,0 +1,21 @@
+# Node
+web/node_modules/
+web/.next/
+web/out/
+
+# Python
+pipeline/.venv/
+pipeline/__pycache__/
+pipeline/.pytest_cache/
+*.pyc
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*
+!.env.example
+
+# Operating system and editors
+.DS_Store
+Thumbs.db
+.vscode/

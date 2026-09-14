@@ -1,0 +1,62 @@
+[
+  {
+    "timestamp": "2026-08-30T08:00:00Z",
+    "consumption_mw": 7840,
+    "production_mw": 7510,
+    "wind_mw": 1840,
+    "solar_mw": 320,
+    "renewable_mw": 2160,
+    "renewable_percentage": 28.76,
+    "balance_mw": -330
+  },
+  {
+    "timestamp": "2026-08-30T09:00:00Z",
+    "consumption_mw": 8010,
+    "production_mw": 7730,
+    "wind_mw": 1920,
+    "solar_mw": 410,
+    "renewable_mw": 2330,
+    "renewable_percentage": 30.14,
+    "balance_mw": -280
+  },
+  {
+    "timestamp": "2026-08-30T10:00:00Z",
+    "consumption_mw": 8230,
+    "production_mw": 7960,
+    "wind_mw": 2050,
+    "solar_mw": 480,
+    "renewable_mw": 2530,
+    "renewable_percentage": 31.78,
+    "balance_mw": -270
+  },
+  {
+    "timestamp": "2026-08-30T11:00:00Z",
+    "consumption_mw": 8420,
+    "production_mw": 8170,
+    "wind_mw": 2140,
+    "solar_mw": 530,
+    "renewable_mw": 2670,
+    "renewable_percentage": 32.68,
+    "balance_mw": -250
+  },
+  {
+    "timestamp": "2026-08-30T12:00:00Z",
+    "consumption_mw": 8560,
+    "production_mw": 8390,
+    "wind_mw": 2260,
+    "solar_mw": 570,
+    "renewable_mw": 2830,
+    "renewable_percentage": 33.73,
+    "balance_mw": -170
+  },
+  {
+    "timestamp": "2026-08-30T13:00:00Z",
+    "consumption_mw": 8480,
+    "production_mw": 8330,
+    "wind_mw": 2310,
+    "solar_mw": 540,
+    "renewable_mw": 2850,
+    "renewable_percentage": 34.21,
+    "balance_mw": -150
+  }
+]
