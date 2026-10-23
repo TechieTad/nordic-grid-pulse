@@ -76,10 +76,10 @@ export default function EnergyDashboard({
           description="Latest system production"
         />
 
-        <MetricCard
+                <MetricCard
           title="Wind + solar"
           value={`${formatNumber(latest.renewable_percentage)}%`}
-          description={`${formatNumber(latest.renewable_mw)} MW`}
+          description={`${formatNumber(latest.renewable_mw)} MW — solar is a forecast`}
         />
 
         <MetricCard
@@ -96,9 +96,9 @@ export default function EnergyDashboard({
             Finnish electricity balance
           </h2>
 
-          <p className="mt-1 text-sm text-slate-600">
-            Synthetic development data. Official Fingrid ingestion will replace
-            this source in the next project stage.
+                    <p className="mt-1 text-sm text-slate-600">
+            Live data from the Fingrid Open Data API. Solar values are a
+            forecast.
           </p>
         </div>
 

@@ -14,10 +14,10 @@ The application currently includes:
 - a Next.js and TypeScript dashboard
 - interactive Recharts visualizations
 
-The current dataset is synthetic development data. A later milestone will
-replace it with official public electricity data from Fingrid.
+The current dataset is fetched from the Fingrid Open Data API. Solar
+production is a forecast value rather than a direct measurement.
 
-## Planned architecture
+## Architecture
 
 Fingrid Open Data API → Python/Pandas pipeline → Supabase PostgreSQL →
 Next.js dashboard.
