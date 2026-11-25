@@ -73,6 +73,7 @@ def main() -> None:
         pipeline_directory = Path(__file__).resolve().parent
         project_directory = pipeline_directory.parent
         energy_path = project_directory / "web" / "src" / "data" / "energy.json"
+        stats_path = project_directory / "data" / "fingrid_run_stats.json"
 
         with energy_path.open("r", encoding="utf-8") as file:
             records = json.load(file)
@@ -80,6 +81,13 @@ def main() -> None:
         fetched = len(records)
         written = load_records_to_supabase(records, url, key)
         dropped = max(0, fetched - written)
+
+        # Prefer the real counts written by fetch_fingrid.py when available.
+        if stats_path.exists():
+            with stats_path.open("r", encoding="utf-8") as file:
+                stats = json.load(file)
+            fetched = int(stats.get("fetched_count", fetched))
+            dropped = int(stats.get("dropped_count", dropped))
 
         print(f"Upserted {written} records into Supabase.")
 

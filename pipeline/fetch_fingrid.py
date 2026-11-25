@@ -92,6 +92,7 @@ def main() -> None:
     pipeline_directory = Path(__file__).resolve().parent
     project_directory = pipeline_directory.parent
     raw_path = project_directory / "data" / "fingrid_latest.json"
+    stats_path = project_directory / "data" / "fingrid_run_stats.json"
     output_path = project_directory / "web" / "src" / "data" / "energy.json"
 
     end = datetime.now(timezone.utc).replace(second=0, microsecond=0)
@@ -117,7 +118,25 @@ def main() -> None:
     transformed = transform_records(combined)
     export_records(transformed, output_path)
 
+    # Real run statistics, handed to load_supabase.py so pipeline_runs
+    # doesn't report a fake "0 dropped".
+    join_dropped = max(0, max(len(frame) for frame in series.values()) - len(combined))
+    fetched_count = len(combined) + join_dropped
+    dropped_count = fetched_count - len(transformed)
+
+    with stats_path.open("w", encoding="utf-8") as file:
+        json.dump(
+            {
+                "fetched_count": fetched_count,
+                "written_count": len(transformed),
+                "dropped_count": dropped_count,
+            },
+            file,
+            indent=2,
+        )
+
     print(f"Processed {len(transformed)} records.")
+    print(f"Fetched {fetched_count} timestamps, dropped {dropped_count}.")
     print(f"Dashboard data written to: {output_path}")
 
 if __name__ == "__main__":

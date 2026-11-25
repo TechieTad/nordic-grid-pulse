@@ -19,3 +19,7 @@ pipeline/.pytest_cache/
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Runtime data written by the pipeline on every run — never commit these
+/data/
+/web/src/data/energy.json
