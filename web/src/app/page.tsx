@@ -2,6 +2,8 @@ import EnergyDashboard, {
   type EnergyRecord,
 } from "@/components/EnergyDashboard";
 
+import Link from "next/link";
+
 import { supabase } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
@@ -31,12 +33,15 @@ export default async function Home() {
         <p className="text-sm font-medium text-slate-600">
           Industrial energy analytics
         </p>
-        <h1 className="text-3xl font-bold text-slate-950">
-          Nordic Grid Pulse
-        </h1>
+        <h1 className="text-3xl font-bold text-slate-950">Nordic Grid Pulse</h1>
         <p className="mt-2 text-slate-600">
-          A full-stack data-engineering and energy-monitoring project built
-          with Python, Pandas, Next.js and PostgreSQL.
+          A full-stack data-engineering and energy-monitoring project built with
+          Python, Pandas, Next.js and PostgreSQL.
+        </p>
+        <p className="mt-4 text-sm">
+          <Link className="font-medium text-blue-700 underline" href="/status">
+            View pipeline status →
+          </Link>
         </p>
       </header>
 
