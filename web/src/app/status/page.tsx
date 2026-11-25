@@ -30,7 +30,7 @@ function formatAge(value: string | null): string {
 export default async function StatusPage() {
   const since24h = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
-  const [total, latest, earliest, recent] = await Promise.all([
+  const [total, latest, earliest, recent, lastRun] = await Promise.all([
     supabase.from("energy_records").select("*", { count: "exact", head: true }),
     supabase
       .from("energy_records")
@@ -48,10 +48,16 @@ export default async function StatusPage() {
       .from("energy_records")
       .select("*", { count: "exact", head: true })
       .gte("timestamp", since24h),
+    supabase
+      .from("pipeline_runs")
+      .select("*")
+      .order("started_at", { ascending: false })
+      .limit(1)
+      .maybeSingle(),
   ]);
 
   const firstError =
-    total.error ?? latest.error ?? earliest.error ?? recent.error;
+    total.error ?? latest.error ?? earliest.error ?? recent.error ?? lastRun.error;
 
   if (firstError) {
     console.error("Status query error:", firstError);
@@ -93,6 +99,23 @@ export default async function StatusPage() {
             detail:
               "No new readings for more than three hours. The ingestion has probably stopped.",
           };
+
+  const run = lastRun.data;
+  const runDuration =
+    run?.started_at && run?.finished_at
+      ? Math.round(
+          (new Date(run.finished_at).getTime() -
+            new Date(run.started_at).getTime()) /
+            1000,
+        )
+      : null;
+
+  const runTone =
+    run?.status === "success"
+      ? "text-emerald-700"
+      : run?.status === "partial"
+        ? "text-amber-700"
+        : "text-red-700";
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-10">
@@ -154,9 +177,34 @@ export default async function StatusPage() {
         />
       </section>
 
+      {run ? (
+        <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <p className="text-sm font-medium text-slate-600">Last pipeline run</p>
+          <div className="mt-3 flex flex-wrap gap-x-8 gap-y-2 text-sm text-slate-700">
+            <span>
+              Status: <strong className={runTone}>{run.status}</strong>
+            </span>
+            <span>Fetched: {run.fetched_count}</span>
+            <span>Written: {run.written_count}</span>
+            <span>Dropped: {run.dropped_count}</span>
+            <span>Finished: {formatDateTime(run.finished_at)}</span>
+            {runDuration !== null && <span>Duration: {runDuration}s</span>}
+          </div>
+          {run.error_message ? (
+            <p className="mt-3 rounded-lg bg-red-50 p-3 text-sm text-red-800">
+              {run.error_message}
+            </p>
+          ) : null}
+        </section>
+      ) : (
+        <p className="mt-8 text-sm text-slate-500">
+          No pipeline run recorded yet. Run{" "}
+          <code>python load_supabase.py</code> to log the first one.
+        </p>
+      )}
+
       <p className="mt-8 text-sm text-slate-500">
-        All times shown in Europe/Helsinki. Drop counts and per-run errors
-        require the <code>pipeline_runs</code> table.
+        All times shown in Europe/Helsinki.
       </p>
     </main>
   );

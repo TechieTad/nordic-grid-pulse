@@ -22,3 +22,27 @@ using (true);
 -- Note: no write policy. The pipeline writes with the service_role key,
 -- which bypasses RLS, so anonymous users can read but not modify.
 git 
+
+-- ---------------------------------------------------------------------------
+-- pipeline_runs
+-- One row per execution of fetch_fingrid.py / load_supabase.py.
+-- Written by the pipeline itself; read by the /status page.
+-- ---------------------------------------------------------------------------
+create table if not exists public.pipeline_runs (
+  id bigint generated always as identity primary key,
+  started_at timestamptz not null default now(),
+  finished_at timestamptz,
+  status text not null check (status in ('success', 'partial', 'error')),
+  fetched_count integer not null default 0,
+  written_count integer not null default 0,
+  dropped_count integer not null default 0,
+  error_message text
+);
+
+alter table public.pipeline_runs enable row level security;
+
+create policy "Allow public read access to pipeline_runs"
+  on public.pipeline_runs
+  for select
+  to anon, authenticated
+  using (true);

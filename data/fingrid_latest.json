@@ -1,5 +1,47 @@
 [
   {
+    "timestamp": "2026-11-25T17:30:00.000Z",
+    "consumption_mw": 12068.7,
+    "production_mw": 11980.7,
+    "wind_mw": 4308.51,
+    "solar_mw": 0.0
+  },
+  {
+    "timestamp": "2026-11-25T17:15:00.000Z",
+    "consumption_mw": 12004.9,
+    "production_mw": 12016.9,
+    "wind_mw": 4367.43,
+    "solar_mw": 0.0
+  },
+  {
+    "timestamp": "2026-11-25T17:00:00.000Z",
+    "consumption_mw": 11909.3,
+    "production_mw": 12092.9,
+    "wind_mw": 4402.19,
+    "solar_mw": 0.0
+  },
+  {
+    "timestamp": "2026-11-25T16:45:00.000Z",
+    "consumption_mw": 11964.7,
+    "production_mw": 12140.2,
+    "wind_mw": 4310.04,
+    "solar_mw": 0.0
+  },
+  {
+    "timestamp": "2026-11-25T16:30:00.000Z",
+    "consumption_mw": 11991.1,
+    "production_mw": 12090.7,
+    "wind_mw": 4282.79,
+    "solar_mw": 0.0
+  },
+  {
+    "timestamp": "2026-11-25T16:15:00.000Z",
+    "consumption_mw": 11789.3,
+    "production_mw": 12158.8,
+    "wind_mw": 4357.52,
+    "solar_mw": 0.0
+  },
+  {
     "timestamp": "2026-11-25T16:00:00.000Z",
     "consumption_mw": 11920.0,
     "production_mw": 12279.0,
@@ -620,48 +662,6 @@
     "consumption_mw": 11774.0,
     "production_mw": 11914.9,
     "wind_mw": 3335.26,
-    "solar_mw": 0.0
-  },
-  {
-    "timestamp": "2026-11-24T17:45:00.000Z",
-    "consumption_mw": 11687.5,
-    "production_mw": 12046.5,
-    "wind_mw": 3375.22,
-    "solar_mw": 0.0
-  },
-  {
-    "timestamp": "2026-11-24T17:30:00.000Z",
-    "consumption_mw": 11688.6,
-    "production_mw": 12117.2,
-    "wind_mw": 3456.92,
-    "solar_mw": 0.0
-  },
-  {
-    "timestamp": "2026-11-24T17:15:00.000Z",
-    "consumption_mw": 11832.7,
-    "production_mw": 12093.7,
-    "wind_mw": 3500.43,
-    "solar_mw": 0.0
-  },
-  {
-    "timestamp": "2026-11-24T17:00:00.000Z",
-    "consumption_mw": 11767.6,
-    "production_mw": 12148.3,
-    "wind_mw": 3520.74,
-    "solar_mw": 0.0
-  },
-  {
-    "timestamp": "2026-11-24T16:45:00.000Z",
-    "consumption_mw": 11631.3,
-    "production_mw": 12181.1,
-    "wind_mw": 3535.66,
-    "solar_mw": 0.0
-  },
-  {
-    "timestamp": "2026-11-24T16:30:00.000Z",
-    "consumption_mw": 11701.0,
-    "production_mw": 12177.8,
-    "wind_mw": 3562.81,
     "solar_mw": 0.0
   }
 ]
