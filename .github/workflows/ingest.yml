@@ -2,8 +2,13 @@ name: Ingest Fingrid data
 
 on:
   schedule:
-    - cron: "15 * * * *"   # every hour at minute 15
+    - cron: "15 * * * *"   # primary, hourly at :15 UTC
+    - cron: "45 * * * *"   # redundancy, hourly at :45 UTC
   workflow_dispatch:        # lets you trigger it by hand from GitHub
+
+concurrency:
+  group: ingest-fingrid
+  cancel-in-progress: false
 
 jobs:
   ingest:

@@ -5,8 +5,8 @@ import { supabase } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
-const STALE_AFTER_MINUTES = 45;
-const OFFLINE_AFTER_MINUTES = 180;
+const STALE_AFTER_MINUTES = 90;
+const OFFLINE_AFTER_MINUTES = 240;
 
 function formatDateTime(value: string | null): string {
   if (!value) return "—";
